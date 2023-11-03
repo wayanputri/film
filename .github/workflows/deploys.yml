@@ -45,4 +45,4 @@ jobs:
             docker rm consumeContainer
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/consume-images
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/consume-images
-            docker run -d --name consumeContainer ${{ secrets.DOCKERHUB_USERNAME }}/consume-images:latest
+            docker run -d -p 80:80 --name consumeContainer ${{ secrets.DOCKERHUB_USERNAME }}/consume-images:latest
