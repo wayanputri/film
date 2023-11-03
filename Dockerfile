@@ -1,17 +1,8 @@
-FROM golang:1.20-alpine
+# Gunakan image Nginx yang ringan sebagai dasar
+FROM nginx:alpine
 
-# create directory folder
-RUN mkdir /app
+# Hapus konfigurasi default Nginx
+RUN rm -rf /etc/nginx/conf.d/*
 
-# set working directory
-WORKDIR /app
-
-COPY ./ /app
-
-RUN go mod tidy
-
-# create executable file with name "belajar_go"
-RUN go build -o belajar_consume
-
-# run executable file
-CMD ["./belajar_consume"]
+# Salin berkas-berkas HTML, CSS, dan JavaScript Anda ke direktori root Nginx
+COPY ./ /usr/share/nginx/html
